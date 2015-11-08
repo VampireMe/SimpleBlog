@@ -49,10 +49,10 @@ class Post extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'content' => 'Content',
-            'tags' => 'Tags',
-            'status' => 'Status',
+            'title' => '标题',
+            'content' => '内容',
+            'tags' => '标签',
+            'status' => '状态',
             'create_time' => 'Create Time',
             'update_time' => 'Update Time',
             'author_id' => 'Author ID',
@@ -73,5 +73,16 @@ class Post extends \yii\db\ActiveRecord
     public function getAuthor()
     {
         return $this->hasOne(User::className(), ['id' => 'author_id']);
+    }
+    
+    /**
+     * 得到状态的名称
+     * @author gaoqing
+     * 2015年11月8日
+     * @param int $statusID 状态的 id 
+     * @return string 状态的名称
+     */
+    public function getLookupName($statusID) {
+    	return $this->hasOne(Lookup::className(), ['code' => 'status']);
     }
 }

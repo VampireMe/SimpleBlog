@@ -48,4 +48,15 @@ class Lookup extends \yii\db\ActiveRecord
             'position' => 'Position',
         ];
     }
+    
+    /**
+     * 得到状态名称
+     * @author gaoqing
+     * 2015年11月8日
+     * @param int $id 状态id
+     * @return string 状态名称
+     */
+    public static function getLookupName($id) {
+    	return self::find()->where(['code' => $id])->one();
+    }
 }
