@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\models\Lookup;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\SearchPost */
@@ -32,12 +33,16 @@ $this->params['breadcrumbs'][] = $this->title;
             [
             	'attribute' => 'status',
             	'value' => function ($model){
-    				return 
-   				 }	
+	            	$lookup = new Lookup();
+	            	$lookupModel = $lookup->findOne($model->status);
+	    			return $lookupModel->name;
+   				}	
+    		], 
+    		[
+    				'attribute' => 'create_time',
+    				'format' => ['date', 'php:Y-m-d']
     		],
-            // 'create_time:datetime',
-            // 'update_time:datetime',
-            // 'author_id',
+            'author_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
